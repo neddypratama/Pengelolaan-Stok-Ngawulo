@@ -51,7 +51,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/entri-barang', EntriBarang::class)->name('entri-barang');
     Route::get('/barang/{id}', DetailBarang::class)->name('detail-barang');
     Route::get('/edit-barang/{id}', EditBarang::class)->name('edit-barang');
-    Route::get('/barang', DataBarang::class)->name('data-barang');
     
 
 });
