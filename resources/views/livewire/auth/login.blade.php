@@ -18,7 +18,8 @@
                                         <input type="email" name="email"
                                             class="form-control form-control-user @error('email') is-invalid @enderror"
                                             id="exampleInputEmail" value="{{ old('email') }}"
-                                            aria-describedby="emailHelp" placeholder="Alamat Email" wire:model.defer="email">
+                                            aria-describedby="emailHelp" placeholder="Alamat Email"
+                                            wire:model.defer="email">
                                         @error('email')
                                             <span class="text-danger small">{{ $message }}</span>
                                         @enderror
@@ -68,3 +69,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('login-success', function() {
+            Swal.fire({
+                title: "Login Berhasil!",
+                text: "{{ session('message') }}",
+                icon: "success",
+                confirmButtonText: "OK"
+            });
+        });
+    });
+</script>

@@ -25,7 +25,7 @@ class Login extends Component
     public function loginUser() {
         $this->validate();
         $key = strtolower($this->email) . '|'. request()->ip();
- 
+    
         if (RateLimiter::tooManyAttempts($key, 5)) {
             $this->addError('email', __('auth.throttle', [
                 'seconds' => RateLimiter::availableIn($key),
@@ -38,12 +38,15 @@ class Login extends Component
             $this->addError('email', __('auth.failed'));
             return null;
         }
-
+    
         $user = User::whereEmail($this->email)->first();
         if ($user->email_verified_at == null) {
             return redirect()->to('/email/verify');
         } else {
-            return redirect()->to('/home');
+            session()->flash('status', 'Selamat Datang ' . $user->name . '!');
+            
+            return redirect()->to('/dashboard');
         }
     }
+    
 }

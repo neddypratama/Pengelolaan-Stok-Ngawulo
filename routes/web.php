@@ -4,6 +4,15 @@ use App\Http\Controllers\GoogleController;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
+use App\Livewire\Master\DataBarang;
+use App\Livewire\Master\DeleteBarang;
+use App\Livewire\Master\DetailBarang;
+use App\Livewire\Master\EditBarang;
+use App\Livewire\Master\EntriBarang;
+use App\Livewire\Master\JenisBarang;
+use App\Livewire\Master\Satuan;
+use App\Livewire\Transaksi\BarangKeluar;
+use App\Livewire\Transaksi\BarangMasuk;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +42,16 @@ Route::middleware('guest')->group(function() {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/data-barang', DataBarang::class)->name('data-barang');
+    Route::get('/jenis-barang', JenisBarang::class)->name('jenis-barang');
+    Route::get('/satuan', Satuan::class)->name('satuan');
+    Route::get('/barang-masuk', BarangMasuk::class)->name('barang-masuk');
+    Route::get('/barang-keluar', BarangKeluar::class)->name('barang-keluar');
+
+    Route::get('/entri-barang', EntriBarang::class)->name('entri-barang');
+    Route::get('/barang/{id}', DetailBarang::class)->name('detail-barang');
+    Route::get('/edit-barang/{id}', EditBarang::class)->name('edit-barang');
+    Route::get('/barang', DataBarang::class)->name('data-barang');
+    
+
 });

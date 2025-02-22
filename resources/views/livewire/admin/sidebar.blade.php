@@ -1,10 +1,9 @@
-<!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-store"></i> <!-- Ikon toko, lebih relevan -->
+            <i class="fas fa-store"></i>
         </div>
         <div class="sidebar-brand-text mx-3">NGAWULO</div>
     </a>
@@ -13,9 +12,9 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="{{route('dashboard')}}">
-            <i class="fas fa-tachometer-alt"></i> <!-- Tetap menggunakan ikon dashboard -->
+    <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
+            <i class="fas fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
     </li>
@@ -24,23 +23,32 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    <div class="sidebar-heading">
-        Master
-    </div>
+    <div class="sidebar-heading">Master</div>
 
     <!-- Nav Item - Barang -->
-    <li class="nav-item">
+    <li class="nav-item {{ request()->routeIs(['data-barang', 'entri-barang', 'detail-barang', 'edit-barang', 'jenis-barang', 'satuan']) ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-box"></i> <!-- Ikon untuk barang -->
+            <i class="fas fa-box"></i>
             <span>Barang</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo"
+            class="collapse {{ request()->routeIs(['data-barang', 'entri-barang', 'detail-barang', 'edit-barang', 'jenis-barang', 'satuan']) ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Komponen Barang:</h6>
-                <a class="collapse-item" href="#"><i class="fas fa-clipboard-list mr-2"></i>Data Barang</a>
-                <a class="collapse-item" href="#"><i class="fas fa-tags mr-2"></i>Jenis Barang</a>
-                <a class="collapse-item" href="#"><i class="fas fa-balance-scale mr-2"></i>Satuan</a>
+                <a class="collapse-item {{ request()->routeIs(['data-barang', 'entri-barang', 'detail-barang', 'edit-barang']) ? 'active' : '' }}"
+                    href="{{ route('data-barang') }}">
+                    <i class="fas fa-clipboard-list mr-2"></i>Data Barang
+                </a>
+                <a class="collapse-item {{ request()->routeIs('jenis-barang') ? 'active' : '' }}"
+                    href="{{ route('jenis-barang') }}">
+                    <i class="fas fa-tags mr-2"></i>Jenis Barang
+                </a>
+                <a class="collapse-item {{ request()->routeIs('satuan') ? 'active' : '' }}"
+                    href="{{ route('satuan') }}">
+                    <i class="fas fa-balance-scale mr-2"></i>Satuan
+                </a>
             </div>
         </div>
     </li>
@@ -49,22 +57,20 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    <div class="sidebar-heading">
-        Transaksi
-    </div>
+    <div class="sidebar-heading">Transaksi</div>
 
     <!-- Nav Item - Barang Masuk -->
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-arrow-down"></i> <!-- Ikon masuk -->
+    <li class="nav-item {{ request()->routeIs('barang-masuk') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('barang-masuk') }}">
+            <i class="fas fa-arrow-down"></i>
             <span>Barang Masuk</span>
         </a>
     </li>
 
     <!-- Nav Item - Barang Keluar -->
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-arrow-up"></i> <!-- Ikon keluar -->
+    <li class="nav-item {{ request()->routeIs('barang-keluar') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('barang-keluar') }}">
+            <i class="fas fa-arrow-up"></i>
             <span>Barang Keluar</span>
         </a>
     </li>
@@ -72,10 +78,10 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- Sidebar Toggler (Sidebar) -->
+    <!-- Sidebar Toggler -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 
 </ul>
-<!-- End of Sidebar -->
+    

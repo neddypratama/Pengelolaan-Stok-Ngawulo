@@ -3,196 +3,17 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-        {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
+        <h1 class="h3 mb-0 text-gray-800">Barang Masuk</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm rounded-pill"><i
+                class="fas fa-plus mr-2"></i> Entri Data</a>
     </div>
 
     @include('alerts.success')
 
-    <!-- Content Row -->
-    <div class="row justify-content-between">
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-2 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Data Barang</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-boxes fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-2 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Jenis Barang</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-tags fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-2 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Satuan
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                            {{-- <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div> --}}
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-balance-scale fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pending Requests Card Example -->
-        <div class="col-xl-2 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Barang Masuk</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-arrow-down fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-2 col-md-6 mb-4">
-            <div class="card border-left-danger shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                Barang Keluar</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-arrow-up fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Content Row -->
-
-    <div class="row">
-
-        <!-- Area Chart -->
-        <div class="col-xl-8 col-lg-7">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-5">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-center small">
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Direct
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Social
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Referral
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- DataTales Example -->
-    <div class="card shadow mb-4">  
+    <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold "><i class="fas fa-exclamation-circle mr-2 text-warning"></i>Stok barang telah mencapai batas minimum</h6>
+            <h6 class="m-0 font-weight-bold "><i class="fas fa-box mr-3"></i>Data Barang Masuk</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -200,31 +21,45 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID Barang</th>
-                            <th>Nama Barang</th>
-                            <th>Jenis Barang</th>
-                            <th>Stok</th>
-                            <th>Satuan</th>
+                            <th>ID Transaksi</th>
+                            <th>Tanggal</th>
+                            <th>Barang</th>
+                            <th>Jumlah Masuk</th>
+                            {{-- <th>Satuan</th> --}}
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     {{-- <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>ID Barang</th>
-                            <th>Nama Barang</th>
-                            <th>Jenis Barang</th>
-                            <th>Stok</th>
                             <th>Satuan</th>
+                            <th>Aksi</th>
+                            <th>Aksi</th>
+                            <th>Aksi</th>
+                            <th>Aksi</th>
                         </tr>
                     </tfoot> --}}
                     <tbody>
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
+                            <td class=" align-middle">Tiger Nixon</td>
+                            <td class=" align-middle">System Architect</td>
+                            <td class=" align-middle">Edinburgh</td>
+                            <td class=" align-middle">61</td>
+                            <td class=" align-middle">2011/04/25</td>
+                            <td class="align-middle">
+                                <a href="#" class="btn btn-success mr-1 rounded-circle" data-bs-toggle="tooltip"
+                                    data-bs-title="Lihat Detail">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a href="#" class="btn btn-warning mr-1 rounded-circle" data-bs-toggle="tooltip"
+                                    data-bs-title="Edit Data">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <a href="#" class="btn btn-danger mr-1 rounded-circle" data-bs-toggle="tooltip"
+                                    data-bs-title="Hapus Data">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
                         </tr>
                         <tr>
                             <td>Garrett Winters</td>
@@ -678,8 +513,64 @@
                 </table>
             </div>
         </div>
+        <form action="" method="POST">
+            @csrf
+            <div class="row">
+                <div class="col-7">
+                    <div class="form-group">
+                        <label for="id_transaksi">ID Transaksi</label>
+                        <input type="text" class="form-control" id="id_transaksi" name="id_transaksi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="barang">Barang</label>
+                        <select class="form-control" id="barang" name="barang" required>
+                            <option value="">-- Pilih Barang --</option>
+                            <option value="">-- Pilih Barang --</option>
+                            <option value="">-- Pilih Barang --</option>
+                            <option value="">-- Pilih Barang --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="stok_sebelumnya">Stok Sebelumnya</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="stok_sebelumnya" name="stok_sebelumnya"
+                                readonly>
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-secondary text-white px-3">Kilogram</span>
+                                <!-- Ganti dengan satuan yang sesuai -->
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal</label>
+                        <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlah_masuk">Jumlah Masuk</label>
+                        <input type="number" class="form-control" id="jumlah_masuk" name="jumlah_masuk" min="1"
+                            step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="total_stok">Total Stok</label>
+                        <input type="number" class="form-control" id="total_stok" name="total_stok" readonly>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button class="btn btn-secondary text-white">Batal</button>
+        </form>
     </div>
     <!-- /.container-fluid -->
 </div>
 <!-- /.container-fluid -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(
+            tooltipTriggerEl))
+    });
+</script>
