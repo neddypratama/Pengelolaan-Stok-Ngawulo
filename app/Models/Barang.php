@@ -32,6 +32,10 @@ class Barang extends Model
 
     protected $listeners = ['barangAdded' => '$refresh'];
 
+    public function refresh() {
+        $this->barangs = Barang::all();
+    }
+
     public function barangKeluars()
     {
         return $this->hasMany(BarangKeluar::class, 'id_barang', 'id_barang');

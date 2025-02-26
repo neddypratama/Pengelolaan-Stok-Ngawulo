@@ -40,11 +40,12 @@ class DataBarang extends Component
         }
         
         $barang->delete();
+        $this->mount();
         $this->dispatch('delete-success');
     }
 
     public function render()
     {
-        return view('livewire.master.data-barang')->extends('layouts1.app')->section('content');
+        return view('livewire.master.barang.data-barang')->extends('layouts1.app')->section('content');
     }
 }

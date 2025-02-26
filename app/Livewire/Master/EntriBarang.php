@@ -50,6 +50,6 @@ class EntriBarang extends Component
 
     public function render()
     {
-        return view('livewire.master.entri-barang')->extends('layouts1.app')->section('content');
+        return view('livewire.master.barang.entri-barang')->extends('layouts1.app')->section('content');
     }
 }

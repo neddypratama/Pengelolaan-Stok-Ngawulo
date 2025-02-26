@@ -23,4 +23,14 @@ class BarangMasuk extends Model
     public function barangMasuk(): BelongsTo {
         return $this->belongsTo(Barang::class, 'id_barang', 'id_barang');
     }
+
+    public function satuan(): BelongsTo {
+        return $this->belongsTo(Satuan::class, 'id_satuan', 'id_satuan');
+    }
+
+    protected $listeners = ['masukAdded' => '$refresh'];
+
+    public function refresh() {
+        $this->masuks = BarangMasuk::all();
+    }
 }

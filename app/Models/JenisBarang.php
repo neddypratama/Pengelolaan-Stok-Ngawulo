@@ -17,4 +17,14 @@ class JenisBarang extends Model
         'updated_at',
     ];
 
+    protected $listeners = ['jenisAdded' => '$refresh'];
+
+    public function refresh() {
+        $this->jeniss = JenisBarang::all();
+    }
+
+    public function barang()
+    {
+        return $this->hasMany(Barang::class, 'id_jenis', 'id_jenis');
+    }
 }

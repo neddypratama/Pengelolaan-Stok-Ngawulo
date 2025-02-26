@@ -16,6 +16,6 @@ class DetailBarang extends Component
 
     public function render()
     {
-        return view('livewire.master.detail-barang')->extends('layouts1.app')->section('content');
+        return view('livewire.master.barang.detail-barang')->extends('layouts1.app')->section('content');
     }
 }

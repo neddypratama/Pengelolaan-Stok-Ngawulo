@@ -23,4 +23,14 @@ class BarangKeluar extends Model
     public function barangKeluar(): BelongsTo {
         return $this->belongsTo(Barang::class, 'id_barang', 'id_barang');
     }
+
+    public function satuan(): BelongsTo {
+        return $this->belongsTo(Satuan::class, 'id_satuan', 'id_satuan');
+    }
+
+    protected $listeners = ['keluarAdded' => '$refresh'];
+
+    public function refresh() {
+        $this->keluars = BarangKeluar::all();
+    }
 }

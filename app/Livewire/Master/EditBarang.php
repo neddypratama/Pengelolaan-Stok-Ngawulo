@@ -51,6 +51,6 @@ class EditBarang extends Component
 
     public function render()
     {
-        return view('livewire.master.edit-barang')->extends('layouts1.app')->section('content');
+        return view('livewire.master.barang.edit-barang')->extends('layouts1.app')->section('content');
     }
 }

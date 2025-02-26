@@ -17,4 +17,14 @@ class Satuan extends Model
         'updated_at',
     ];
 
+    protected $listeners = ['satuanAdded' => '$refresh'];
+
+    public function refresh() {
+        $this->satuans = Satuan::all();
+    }
+
+    public function barang()
+    {
+        return $this->hasMany(Barang::class, 'id_satuan', 'id_satuan');
+    }
 }
