@@ -3,6 +3,7 @@
 use App\Http\Controllers\GoogleController;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Profile;
 use App\Livewire\Auth\Register;
 use App\Livewire\Master\DataBarang;
 use App\Livewire\Master\DetailBarang;
@@ -50,6 +51,7 @@ Route::middleware('guest')->group(function() {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/profile', Profile::class)->name('profile');
     
     Route::get('/data-barang', DataBarang::class)->name('data-barang');
     Route::get('/entri-barang', EntriBarang::class)->name('entri-barang');

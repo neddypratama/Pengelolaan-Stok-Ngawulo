@@ -26,14 +26,14 @@
     <div class="sidebar-heading">Master</div>
 
     <!-- Nav Item - Barang -->
-    <li class="nav-item {{ request()->routeIs(['data-barang', 'entri-barang', 'detail-barang', 'edit-barang', 'jenis-barang', 'satuan']) ? 'active' : '' }}">
+    <li class="nav-item {{ request()->routeIs(['data-barang', 'entri-barang', 'detail-barang', 'edit-barang', 'jenis-barang', 'entri-jenis', 'edit-jenis', 'satuan', 'entri-satuan', 'edit-satuan']) ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-box"></i>
             <span>Barang</span>
         </a>
         <div id="collapseTwo"
-            class="collapse {{ request()->routeIs(['data-barang', 'entri-barang', 'detail-barang', 'edit-barang', 'jenis-barang', 'satuan']) ? 'show' : '' }}"
+            class="collapse {{ request()->routeIs(['data-barang', 'entri-barang', 'detail-barang', 'edit-barang', 'jenis-barang', 'entri-jenis', 'edit-jenis', 'satuan', 'entri-satuan', 'edit-satuan']) ? 'show' : '' }}"
             aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Komponen Barang:</h6>
@@ -41,11 +41,11 @@
                     href="{{ route('data-barang') }}">
                     <i class="fas fa-clipboard-list mr-2"></i>Data Barang
                 </a>
-                <a class="collapse-item {{ request()->routeIs('jenis-barang') ? 'active' : '' }}"
+                <a class="collapse-item {{ request()->routeIs('jenis-barang', 'entri-jenis', 'edit-jenis') ? 'active' : '' }}"
                     href="{{ route('jenis-barang') }}">
                     <i class="fas fa-tags mr-2"></i>Jenis Barang
                 </a>
-                <a class="collapse-item {{ request()->routeIs('satuan') ? 'active' : '' }}"
+                <a class="collapse-item {{ request()->routeIs('satuan', 'entri-satuan', 'edit-satuan') ? 'active' : '' }}"
                     href="{{ route('satuan') }}">
                     <i class="fas fa-balance-scale mr-2"></i>Satuan
                 </a>
@@ -72,6 +72,19 @@
         <a class="nav-link" href="{{ route('barang-keluar') }}">
             <i class="fas fa-arrow-up"></i>
             <span>Barang Keluar</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">User Management</div>
+
+    <!-- Nav Item - Barang Keluar -->
+    <li class="nav-item {{ request()->routeIs('profile') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('profile') }}">
+            <i class="fas fa-users"></i>
+            <span>Profile User</span>
         </a>
     </li>
 
