@@ -4,17 +4,23 @@ namespace App\Livewire\Master;
 
 use App\Models\Barang;
 use Livewire\Component;
+use App\Events\BarangUpdated;
 
 class DataBarang extends Component
 {
     public $barangs;
 
     public $delete_id;
-    protected $listeners = ['deleteConfirmed' => 'deleteBarang'];
+    protected $listeners = ['deleteConfirmed' => 'deleteBarang', 'refreshTable' => '$refresh'];
 
     public function mount()
     {
-        $this->barangs = Barang::with(['satuan', 'jenis'])->get();
+        $this->loadData();
+    }
+
+    public function loadData()
+    {
+        $this->barangs = Barang::with(['jenis', 'satuan'])->get();
     }
 
     public function confirmDelete($id)
@@ -39,9 +45,9 @@ class DataBarang extends Component
             return;
         }
         
-        $barang->delete();
-        $this->mount();
         $this->dispatch('delete-success');
+        $this->dispatch('refreshTable'); // Emit event untuk refresh data
+        $barang->delete();
     }
 
     public function render()

@@ -1,9 +1,27 @@
-<div class="card shadow-lg p-3 rounded">
-    <div class="card-header bg-primary text-white">
-        <h5 class="m-0 text-center">Stok Barang</h5>
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Stok Barang</h6>
+        <div class="dropdown no-arrow">
+            {{-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Dropdown Header:</div>
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div> --}}
+        </div>
     </div>
+    <!-- Card Body -->
     <div class="card-body">
-        <canvas id="stokChart"></canvas>
+        <div class="chart-area">
+            <canvas id="stokChart"></canvas>
+        </div>
     </div>
 </div>
 
@@ -37,15 +55,11 @@
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false, // Harus false agar tinggi bisa disesuaikan
                 plugins: {
                     legend: {
-                        labels: {
-                            font: {
-                                size: 14
-                            },
-                            color: '#333'
-                        }
-                    },
+                        display: false,
+                    },  
                     tooltip: {
                         enabled: true,
                         backgroundColor: 'rgba(0, 0, 0, 0.8)',
@@ -57,27 +71,57 @@
                         }
                     }
                 },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        grid: {
-                            drawBorder: false, // Hilangkan border sumbu Y
-                            display: false, // Hilangkan garis grid Y
-                            color: "rgba(0, 0, 0, 0)" // Pastikan tidak terlihat
+                animation: {
+                    duration: 1500,
+                    easing: 'easeOutBounce'
+                }
+            }
+        });
+    });
+
+    document.addEventListener("livewire:navigated", function() {
+        var stokData = @json(collect($stokData)->pluck('stok_barang'));
+        var labelData = @json(collect($stokData)->pluck('nama_barang'));
+
+        // Generate warna random
+        function getRandomColor() {
+            return `rgba(${Math.floor(Math.random() * 255)}, 
+                     ${Math.floor(Math.random() * 255)}, 
+                     ${Math.floor(Math.random() * 255)}, 0.6)`;
+        }
+
+        var backgroundColors = stokData.map(() => getRandomColor());
+        var borderColors = backgroundColors.map(color => color.replace('0.6', '1'));
+
+        var ctx = document.getElementById('stokChart').getContext('2d');
+        var stokChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labelData,
+                datasets: [{
+                    label: 'Stok Barang',
+                    data: stokData,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Harus false agar tinggi bisa disesuaikan
+                plugins: {
+                    legend: {
+                        display: false,
+                    },  
+                    tooltip: {
+                        enabled: true,
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleFont: {
+                            size: 14
                         },
-                        ticks: {
-                            display: false
-                        } // Hilangkan angka sumbu Y
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false, // Hilangkan border sumbu X
-                            display: false, // Hilangkan garis grid X
-                            color: "rgba(0, 0, 0, 0)" // Pastikan tidak terlihat
-                        },
-                        ticks: {
-                            display: false
-                        } // Hilangkan angka sumbu X
+                        bodyFont: {
+                            size: 12
+                        }
                     }
                 },
                 animation: {
@@ -86,5 +130,5 @@
                 }
             }
         });
-    }); 
+    });
 </script>

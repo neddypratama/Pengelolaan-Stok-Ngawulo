@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Data Barang</h1>
         <a href="{{ route('entri-barang') }}"
-            class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm rounded-pill">
+            class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm rounded-pill" wire:navigate>
             <i class="fas fa-plus mr-2"></i> Entri Data
         </a>
     </div>
@@ -19,6 +19,7 @@
             <h6 class="m-0 font-weight-bold "><i class="fas fa-box mr-3"></i>Data Barang</h6>
         </div>
         <div class="card-body">
+            {{-- <div wire:poll.1ms> --}}
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -32,23 +33,13 @@
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
-                    {{-- <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>ID Barang</th>
-                            <th>Jenis Barang</th>
-                            <th>Nama Barang</th>
-                            <th>Stok</th>
-                            <th>Satuan</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot> --}}
                     <tbody>
                         @foreach ($barangs as $barang)
                             <tr>
                                 <td class="align-middle">{{ $loop->iteration }}</td>
                                 <td class=" align-middle">{{ $barang->kode_barang }}</td>
-                                <td class=" align-middle">{{ $barang->jenis ? $barang->jenis->nama_jenis : '-' }}</td>
+                                <td class=" align-middle">{{ $barang->jenis ? $barang->jenis->nama_jenis : '-' }}
+                                </td>
                                 <td class=" align-middle">{{ $barang->nama_barang }}</td>
                                 <td class=" align-middle">{{ $barang->stok_barang }}</td>
                                 <td class=" align-middle">{{ $barang->satuan ? $barang->satuan->nama_satuan : '-' }}
@@ -56,12 +47,12 @@
                                 <td class="align-middle text-center">
                                     <a href="{{ route('detail-barang', $barang->id_barang) }}"
                                         class="btn btn-success mr-1 rounded-circle" data-bs-toggle="tooltip"
-                                        data-bs-title="Lihat Detail">
+                                        data-bs-title="Lihat Detail" wire:navigate>
                                         <i class="fas fa-info-circle"></i>
                                     </a>
                                     <a href="{{ route('edit-barang', $barang->id_barang) }}"
                                         class="btn btn-warning mr-1 rounded-circle" data-bs-toggle="tooltip"
-                                        data-bs-title="Edit Data">
+                                        data-bs-title="Edit Data" wire:navigate>
                                         <i class="fas fa-pen"></i>
                                     </a>
                                     <button wire:click.prevent="confirmDelete({{ $barang->id_barang }})"
@@ -75,6 +66,7 @@
                     </tbody>
                 </table>
             </div>
+            {{-- </div> --}}
         </div>
 
     </div>
@@ -90,7 +82,6 @@
             tooltipTriggerEl))
     });
 </script>
-
 <script>
     window.addEventListener('show-delete-confirmation', event => {
         Swal.fire({
@@ -105,6 +96,14 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 Livewire.dispatch('deleteConfirmed', event.detail.id);
+            } else {
+                // Hancurkan DataTable sebelum memperbarui
+                $('#dataTable').DataTable().destroy();
+
+                // Tunggu Livewire memperbarui tabel, lalu inisialisasi ulang DataTable
+                setTimeout(() => {
+                    $('#dataTable').DataTable();
+                }, 100);
             }
         });
     });
@@ -115,16 +114,32 @@
             title: 'Gagal Menghapus!',
             text: event.detail.message,
             confirmButtonText: 'OK'
+        }).then(() => {
+            // Hancurkan DataTable sebelum memperbarui
+            $('#dataTable').DataTable().destroy();
+
+            // Tunggu Livewire memperbarui tabel, lalu inisialisasi ulang DataTable
+            setTimeout(() => {
+                $('#dataTable').DataTable();
+            }, 100);
         });
     });
 
     window.addEventListener('delete-success', event => {
         Swal.fire({
-            icon: 'success', // Ikon untuk alert, bisa diubah jadi 'error', 'warning', dll.
+            icon: 'success',
             title: 'Berhasil Terhapus!',
             text: 'Data telah dihapus.',
-            // timer: 2000,
             confirmButtonText: 'OK'
+        }).then(() => {
+            location.reload();
+            // // Hancurkan DataTable sebelum memperbarui
+            // $('#dataTable').DataTable().destroy();
+
+            // // Tunggu Livewire memperbarui tabel, lalu inisialisasi ulang DataTable
+            // setTimeout(() => {
+            //     $('#dataTable').DataTable();
+            // }, 100);
         });
     });
 </script>

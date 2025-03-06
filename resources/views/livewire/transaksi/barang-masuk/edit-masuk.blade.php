@@ -4,7 +4,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Data Barang Masuk</h1>
         <a href="{{ route('barang-masuk') }}"
-            class="d-none d-sm-inline-block btn btn-md btn-secondary pr-3 shadow-sm rounded-pill">
+            class="d-none d-sm-inline-block btn btn-md btn-secondary pr-3 shadow-sm rounded-pill" wire:navigate>
             <i class="fas fa-chevron-left mr-2"></i></i> Kembali
         </a>
     </div>

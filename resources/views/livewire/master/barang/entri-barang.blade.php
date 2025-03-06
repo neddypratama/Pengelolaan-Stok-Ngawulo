@@ -14,7 +14,7 @@
             <h5 class="m-0 font-weight-bold text-primary">Entri Data Barang</h5>
         </div>
         <div class="card-body">
-            <form wire:submit.prevent="save">
+            <form wire:submit.prevent="save" >
                 <div class="row">
                     <!-- Form Input (7 Kolom) -->
                     <div class="col-md-6">

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Master;
 
+use App\Events\BarangUpdated;
 use App\Models\Barang;
 use Livewire\Component;
 
@@ -34,7 +35,7 @@ class EntriBarang extends Component
             'id_jenis' => 'required',
         ]);
 
-        Barang::create([
+        $barang = Barang::create([
             'kode_barang' => $this->kode_barang,
             'nama_barang' => $this->nama_barang,
             'stok_barang' => $this->stok_barang,
@@ -42,8 +43,9 @@ class EntriBarang extends Component
             'id_jenis' => $this->id_jenis,
         ]);
 
-        session()->flash('status', 'Data barang berhasil ditambahkan.');
         $this->reset(['nama_barang', 'stok_barang', 'id_satuan', 'id_jenis']);
+        session()->flash('status', 'Data barang berhasil ditambahkan.');
+        
         $this->generateKodeBarang(); // Generate kode baru setelah menyimpan data
         return redirect()->to('/data-barang');
     }

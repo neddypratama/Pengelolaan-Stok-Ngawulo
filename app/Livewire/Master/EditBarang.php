@@ -46,6 +46,10 @@ class EditBarang extends Component
         ]);
 
         session()->flash('status', 'Data barang berhasil diperbarui.');
+        // Kirim event ke semua komponen Livewire
+        $this->dispatch('barangDitambahkan');
+        $this->dispatch('refreshData'); // Paksa halaman data barang untuk update otomatis
+        
         return redirect()->route('data-barang');
     }
 

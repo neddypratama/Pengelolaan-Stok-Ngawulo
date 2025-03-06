@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Barang Masuk</h1>
-        <a href="{{ route('entri-masuk')}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm rounded-pill"><i
+        <a href="{{ route('entri-masuk')}}" class="d-none d-sm-inline-block btn btn-md btn-primary shadow-sm rounded-pill" wire:navigate><i
                 class="fas fa-plus mr-2"></i> Entri Data</a>
     </div>
 
@@ -51,7 +51,7 @@
                                 <td class="align-middle text-center">
                                     <a href="{{ route('edit-masuk', $masuk->id_masuk) }}"
                                         class="btn btn-warning mr-1 rounded-circle" data-bs-toggle="tooltip"
-                                        data-bs-title="Edit Data">
+                                        data-bs-title="Edit Data" wire:navigate>
                                         <i class="fas fa-pen"></i>
                                     </a>
                                     <button wire:click.prevent="confirmDelete({{ $masuk->id_masuk }})"
@@ -93,6 +93,13 @@
             if (result.isConfirmed) {
                 Livewire.dispatch('deleteConfirmed', event.detail.id);
             }
+            // Hancurkan DataTable sebelum memperbarui
+            $('#dataTable').DataTable().destroy();
+
+            // Tunggu Livewire memperbarui tabel, lalu inisialisasi ulang DataTable
+            setTimeout(() => {
+                $('#dataTable').DataTable();
+            }, 100);
         });
     });
 
@@ -102,6 +109,14 @@
             title: 'Gagal Menghapus!',
             text: event.detail.message,
             confirmButtonText: 'OK'
+        }).then(() => {
+            // Hancurkan DataTable sebelum memperbarui
+            $('#dataTable').DataTable().destroy();
+
+            // Tunggu Livewire memperbarui tabel, lalu inisialisasi ulang DataTable
+            setTimeout(() => {
+                $('#dataTable').DataTable();
+            }, 100);
         });
     });
 
@@ -112,6 +127,15 @@
             text: 'Data telah dihapus.',
             // timer: 2000,
             confirmButtonText: 'OK'
+        }).then(() => {
+            // // Hancurkan DataTable sebelum memperbarui
+            // $('#dataTable').DataTable().destroy();
+
+            // // Tunggu Livewire memperbarui tabel, lalu inisialisasi ulang DataTable
+            // setTimeout(() => {
+            //     $('#dataTable').DataTable();
+            // }, 100);
+            location.reload();
         });
     });
 </script>

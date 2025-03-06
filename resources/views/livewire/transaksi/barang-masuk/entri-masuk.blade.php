@@ -4,7 +4,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Data Barang Masuk</h1>
         <a href="{{ route('barang-masuk') }}"
-            class="d-none d-sm-inline-block btn btn-md btn-secondary pr-3 shadow-sm rounded-pill">
+            class="d-none d-sm-inline-block btn btn-md btn-secondary pr-3 shadow-sm rounded-pill" wire:navigate>
             <i class="fas fa-chevron-left mr-2"></i></i> Kembali
         </a>
     </div>
@@ -147,6 +147,48 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        const selectBarang = document.querySelector('select[name="id_barang"]');
+        const stokSebelumnyaInput = document.getElementById('stok_sebelumnya');
+        const satuanInput = document.getElementById('satuan');
+        const jumlahMasukInput = document.querySelector('input[name="jumlah_masuk"]');
+        const totalStokInput = document.getElementById('total_stok');
+        console.log(selectBarang);
+
+        selectBarang.addEventListener('change', function() {
+            const barangId = this.value;
+
+            if (barangId) {
+                fetch(`/get-barang/${barangId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        totalStokInput.value = data.stok;
+                        stokSebelumnyaInput.value = data.stok;
+                        satuanInput.value = data.satuan;
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            } else {
+                stokSebelumnyaInput.value = '';
+                satuanInput.value = ''; // Default satuan
+            }
+        });
+
+        jumlahMasukInput.addEventListener('input', updateTotalStok);
+
+        function updateTotalStok() {
+            const stokSebelumnya = parseFloat(stokSebelumnyaInput.value) || 0;
+            const jumlahMasuk = parseFloat(jumlahMasukInput.value) || 0;
+            totalStokInput.value = stokSebelumnya;
+
+            if (jumlahMasuk === 0) {
+                totalStokInput.value = stokSebelumnya; // Jika jumlah belum diisi, stok total = stok sebelumnya
+            } else {
+                totalStokInput.value = stokSebelumnya +
+                jumlahMasuk; // Jika jumlah diisi, stok total = stok sebelumnya + jumlah masuk
+            }
+        }
+    });
+
+    document.addEventListener("livewire:navigated", function() {
         const selectBarang = document.querySelector('select[name="id_barang"]');
         const stokSebelumnyaInput = document.getElementById('stok_sebelumnya');
         const satuanInput = document.getElementById('satuan');

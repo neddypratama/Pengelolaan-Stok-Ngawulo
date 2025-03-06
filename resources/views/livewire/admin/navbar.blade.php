@@ -7,103 +7,28 @@
     </button>
 
     <!-- Tanggal & Waktu Realtime -->
-    <div class="navbar-text font-weight-bold ml-3" id="currentDateTime">
-        <?php
-        setlocale(LC_TIME, 'id_ID.utf8');
-        date_default_timezone_set('Asia/Jakarta');
-        
-        // Array hari dalam bahasa Indonesia
-        $hariIndo = [
-            'Sunday' => 'Minggu',
-            'Monday' => 'Senin',
-            'Tuesday' => 'Selasa',
-            'Wednesday' => 'Rabu',
-            'Thursday' => 'Kamis',
-            'Friday' => 'Jumat',
-            'Saturday' => 'Sabtu',
-        ];
-        
-        // Nama bulan dalam bahasa Indonesia
-        $bulanIndo = [
-            'January' => 'Januari',
-            'February' => 'Februari',
-            'March' => 'Maret',
-            'April' => 'April',
-            'May' => 'Mei',
-            'June' => 'Juni',
-            'July' => 'Juli',
-            'August' => 'Agustus',
-            'September' => 'September',
-            'October' => 'Oktober',
-            'November' => 'November',
-            'December' => 'Desember',
-        ];
-        
-        // Ambil hari dan tanggal
-        $hariInggris = date('l'); // Nama hari dalam bahasa Inggris
-        $bulanInggris = date('F'); // Nama bulan dalam bahasa Inggris
-        
-        $hari = $hariIndo[$hariInggris]; // Ubah ke bahasa Indonesia
-        $tanggal = date('d') . ' ' . $bulanIndo[$bulanInggris] . ' ' . date('Y'); // Format tanggal
-        
-        echo "$hari, $tanggal - <span id='clock'></span> WIB";
-        ?>
+    <div class="navbar-text font-weight-bold ml-3 d-flex flex-wrap align-items-center" id="currentDateTime">
+        <span id="tanggal" class="mr-2"></span>
+        <span id="clock"></span> WIB
     </div>
+
+    <style>
+        #currentDateTime {
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            #currentDateTime {
+                font-size: 12px;
+                flex-direction: column;
+                text-align: left;
+            }
+        }
+    </style>
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-
-        <!-- Nav Item - Notifikasi -->
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Jumlah Notifikasi -->
-                <span class="badge badge-danger badge-counter">3+</span>
-            </a>
-            <!-- Dropdown - Notifikasi -->
-            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                    Pusat Notifikasi
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                            <i class="fas fa-file-alt text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">12 Desember 2024</div>
-                        <span class="font-weight-bold">Laporan bulanan baru siap diunduh!</span>
-                    </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-success">
-                            <i class="fas fa-donate text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">7 Desember 2024</div>
-                        Rp 2.900.000 telah masuk ke akun Anda!
-                    </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-warning">
-                            <i class="fas fa-exclamation-triangle text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">2 Desember 2024</div>
-                        Peringatan: Pengeluaran tinggi terdeteksi di akun Anda.
-                    </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Lihat Semua Notifikasi</a>
-            </div>
-        </li>
-
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - Informasi Pengguna -->
@@ -136,18 +61,59 @@
 <!-- End of Topbar -->
 
 <script>
-    // Fungsi untuk memperbarui jam secara real-time
     function updateClock() {
-        const now = new Date();
-        const hours = now.getHours().toString().padStart(2, '0');
-        const minutes = now.getMinutes().toString().padStart(2, '0');
-        const seconds = now.getSeconds().toString().padStart(2, '0');
-        document.getElementById('clock').innerHTML = `${hours}:${minutes}:${seconds}`;
+        let now = new Date();
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let seconds = now.getSeconds().toString().padStart(2, '0');
+        document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
     }
 
-    // Perbarui setiap detik
-    setInterval(updateClock, 1000);
+    function updateDateTime() {
+        let hariIndo = {
+            "Sunday": "Minggu",
+            "Monday": "Senin",
+            "Tuesday": "Selasa",
+            "Wednesday": "Rabu",
+            "Thursday": "Kamis",
+            "Friday": "Jumat",
+            "Saturday": "Sabtu"
+        };
+        let bulanIndo = {
+            "January": "Januari",
+            "February": "Februari",
+            "March": "Maret",
+            "April": "April",
+            "May": "Mei",
+            "June": "Juni",
+            "July": "Juli",
+            "August": "Agustus",
+            "September": "September",
+            "October": "Oktober",
+            "November": "November",
+            "December": "Desember"
+        };
 
-    // Panggil fungsi pertama kali agar jam langsung muncul tanpa delay 1 detik
-    updateClock();
+        let now = new Date();
+        let hari = hariIndo[now.toLocaleDateString('en-US', {
+            weekday: 'long'
+        })];
+        let bulan = bulanIndo[now.toLocaleDateString('en-US', {
+            month: 'long'
+        })];
+        let tanggal = now.getDate().toString().padStart(2, '0');
+        let tahun = now.getFullYear();
+
+        document.getElementById('tanggal').textContent = `${hari}, ${tanggal} ${bulan} ${tahun}`;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        updateDateTime(); // Tampilkan tanggal & hari saat pertama kali halaman dimuat
+        updateClock(); // Tampilkan jam pertama kali
+        setInterval(updateClock, 1000); // Update jam setiap detik
+    });
+
+    document.addEventListener("livewire:navigated", function() {
+        updateDateTime(); // Perbarui tanggal setelah navigasi dengan Livewire
+    });
 </script>

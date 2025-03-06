@@ -20,7 +20,7 @@
     <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-    @livewireStyles()
+    @livewireStyles
 </head>
 
 <body id="page-top">
@@ -77,14 +77,14 @@
     <!-- Page level plugins -->
     <script src="{{ asset('template/vendor/chart.js/Chart.min.js') }}"></script>
 
-    <!-- Page level custom scripts -->
+    {{-- <!-- Page level custom scripts -->
     <script src="{{ asset('template/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('template/js/demo/chart-pie-demo.js') }}"></script>
-    <script src="{{ asset('template/js/demo/chart-bar-demo.js') }}"></script>
-    <script src="{{ asset('template/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('template/js/demo/chart-bar-demo.js') }}"></script> --}}
 
     <!-- Page level custom scripts -->
+    <script src="{{ asset('template/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('template/js/demo/datatables-demo.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -95,7 +95,22 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+    <script>
+        document.addEventListener("livewire:navigated", () => {
+            setTimeout(() => {
+                if ($.fn.DataTable.isDataTable("#dataTable")) {
+                    $('#dataTable').DataTable().destroy(); // Hancurkan instance sebelumnya
+                }
+                $('#dataTable').DataTable(); // Inisialisasi ulang DataTables
+            }, 1); // Beri jeda agar DOM siap
+        });
+    </script>
 
+
+    @livewireScripts
 </body>
 
 </html>

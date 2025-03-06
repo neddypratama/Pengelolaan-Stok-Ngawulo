@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}" wire:navigate>
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-store"></i>
         </div>
@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboard') }}">
+        <a class="nav-link" href="{{ route('dashboard') }}" wire:navigate>
             <i class="fas fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
@@ -38,15 +38,15 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Komponen Barang:</h6>
                 <a class="collapse-item {{ request()->routeIs(['data-barang', 'entri-barang', 'detail-barang', 'edit-barang']) ? 'active' : '' }}"
-                    href="{{ route('data-barang') }}">
+                    href="{{ route('data-barang') }}" wire:navigate>
                     <i class="fas fa-clipboard-list mr-2"></i>Data Barang
                 </a>
                 <a class="collapse-item {{ request()->routeIs('jenis-barang', 'entri-jenis', 'edit-jenis') ? 'active' : '' }}"
-                    href="{{ route('jenis-barang') }}">
+                    href="{{ route('jenis-barang') }}" wire:navigate>
                     <i class="fas fa-tags mr-2"></i>Jenis Barang
                 </a>
                 <a class="collapse-item {{ request()->routeIs('satuan', 'entri-satuan', 'edit-satuan') ? 'active' : '' }}"
-                    href="{{ route('satuan') }}">
+                    href="{{ route('satuan') }}" wire:navigate>
                     <i class="fas fa-balance-scale mr-2"></i>Satuan
                 </a>
             </div>
@@ -61,7 +61,7 @@
 
     <!-- Nav Item - Barang Masuk -->
     <li class="nav-item {{ request()->routeIs('barang-masuk') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('barang-masuk') }}">
+        <a class="nav-link" href="{{ route('barang-masuk') }}" wire:navigate>
             <i class="fas fa-arrow-down"></i>
             <span>Barang Masuk</span>
         </a>
@@ -69,7 +69,7 @@
 
     <!-- Nav Item - Barang Keluar -->
     <li class="nav-item {{ request()->routeIs('barang-keluar') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('barang-keluar') }}">
+        <a class="nav-link" href="{{ route('barang-keluar') }}" wire:navigate>
             <i class="fas fa-arrow-up"></i>
             <span>Barang Keluar</span>
         </a>
@@ -82,7 +82,7 @@
 
     <!-- Nav Item - Barang Keluar -->
     <li class="nav-item {{ request()->routeIs('profile') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('profile') }}">
+        <a class="nav-link" href="{{ route('profile') }}" wire:navigate>
             <i class="fas fa-users"></i>
             <span>Profile User</span>
         </a>
